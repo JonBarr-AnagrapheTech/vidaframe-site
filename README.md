@@ -47,4 +47,4 @@ Host the contents of `dist/` on any static host. No environment variables are re
 - **Vercel:** framework preset Vite, output directory `dist`.
 - **Anywhere else:** upload `dist/` as the site root.
 
-The intended public URL is `https://anagraphetech.com/`. Canonical and Open Graph tags already use that host. The social image is `public/og.png`.
+The intended public URL is `https://anagraphetech.com/`. Canonical and Open Graph tags already use that host. The social image is `public/og.png` (1200×630). `scripts/og.html` is the source for that image.

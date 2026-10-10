@@ -74,7 +74,9 @@ function showSuccess(form) {
   const input = emailInput(form);
   input.setAttribute("aria-invalid", "false");
   input.readOnly = true;
-  submitButton(form).disabled = true;
+  const button = submitButton(form);
+  button.disabled = true;
+  button.textContent = "Joined";
 }
 
 function configured(form) {

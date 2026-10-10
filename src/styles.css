@@ -155,37 +155,40 @@ input {
 
 .wordmark {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: baseline;
   justify-content: center;
-  column-gap: 0.16em;
+  column-gap: 0.14em;
   font-family: var(--serif);
+  font-size: clamp(4.4rem, 11vw, 7.25rem);
   font-variation-settings: "opsz" 144, "SOFT" 30, "WONK" 1, "wght" 520;
   font-weight: 520;
-  line-height: 0.88;
+  line-height: 0.85;
   letter-spacing: -0.04em;
 }
 
 .wordmark-vida {
   color: var(--cream);
-  font-size: clamp(4.6rem, 12vw, 7.4rem);
+  font-size: 1em;
 }
 
 .wordmark-frame {
   color: var(--gold);
-  font-size: 0.42em;
+  font-size: 0.46em;
   font-weight: 500;
   letter-spacing: -0.03em;
 }
 
 .tagline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.12em;
   margin-top: 1.35rem;
-  max-width: 16rem;
   color: var(--cream);
   font-size: clamp(1.2rem, 2.4vw, 1.45rem);
   font-weight: 450;
-  line-height: 1.35;
-  text-wrap: balance;
+  line-height: 1.25;
 }
 
 .badge {
@@ -545,10 +548,6 @@ input {
 
   .waitlist button {
     width: 100%;
-  }
-
-  .tagline {
-    max-width: 14rem;
   }
 }
 
