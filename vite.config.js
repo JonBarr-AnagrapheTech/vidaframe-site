@@ -13,6 +13,7 @@ function buttondownConfig() {
 }
 
 export default defineConfig({
+  base: "./",
   appType: "mpa",
   plugins: [buttondownConfig()],
   server: {
