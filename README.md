@@ -28,12 +28,12 @@ Both email forms post to Buttondown. The username lives in one place:
 
 ```js
 // site.config.js
-export const BUTTONDOWN_USERNAME = "anagraphe";
+export const BUTTONDOWN_USERNAME = "vidaframe";
 ```
 
-`anagraphe` is a placeholder. Change it to the real Buttondown username once that account exists, then rebuild. Vite injects the form action from this constant:
+That is the live account at [buttondown.com/vidaframe](https://buttondown.com/vidaframe). It is still in Buttondown's review, so a real signup will be tested before go-live. Vite injects the form action from this constant:
 
-`https://buttondown.com/api/emails/embed-subscribe/<username>`
+`https://buttondown.com/api/emails/embed-subscribe/vidaframe`
 
 Each form sends an `email` field and a hidden `embed` field. Without JavaScript, the browser validates the address and opens Buttondown's confirmation page. With JavaScript, the address is checked first and the result is shown on the page. If Buttondown needs the visitor to continue there (for example a CAPTCHA), the form falls back to the full-page post.
 
@@ -41,7 +41,7 @@ To add another form, copy a `form.waitlist` block. Give the email field, status,
 
 ## Deploy later
 
-Host the contents of `dist/` on any static host. No environment variables are required. Update `BUTTONDOWN_USERNAME` and rebuild before the first public deploy.
+Host the contents of `dist/` on any static host. No environment variables are required. This repo does not configure hosting or DNS. If the Buttondown username ever changes, update `BUTTONDOWN_USERNAME` and rebuild before the next deploy.
 
 - **Cloudflare Pages:** build command `npm run build`, output directory `dist`.
 - **Vercel:** framework preset Vite, output directory `dist`.
