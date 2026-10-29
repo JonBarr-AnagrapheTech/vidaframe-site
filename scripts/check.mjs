@@ -73,6 +73,34 @@ const viteConfig = readFileSync(new URL("../vite.config.js", import.meta.url), "
 
 assert.match(indexHtml, /href="privacy\/"/);
 assert.match(indexHtml, /href="support\/"/);
+assert.match(indexHtml, /<title>VidaFrame — Your albums, full screen<\/title>/);
+assert.match(indexHtml, /property="og:title" content="VidaFrame — Your albums, full screen"/);
+assert.match(indexHtml, /name="twitter:title" content="VidaFrame — Your albums, full screen"/);
+assert.equal(
+  indexHtml.match(
+    /Choose Favorites, your albums, or an iCloud Shared Album\. The house is one swipe away\. Coming to the App Store\./g,
+  )?.length,
+  3,
+);
+assert.match(indexHtml, /property="og:image" content="https:\/\/anagraphetech\.com\/og\.png"/);
+assert.match(indexHtml, /name="twitter:image" content="https:\/\/anagraphetech\.com\/og\.png"/);
+assert.match(indexHtml, /Your albums, full screen/);
+assert.match(indexHtml, /The house, one swipe away/);
+assert.match(indexHtml, /<p class="badge">Coming to the App Store<\/p>/);
+assert.match(indexHtml, /VidaFrame is free/);
+assert.match(indexHtml, /VidaFrame Plus is an optional upgrade at \$0\.49 a month/);
+assert.match(indexHtml, /removes the notice and adds weather/);
+assert.match(indexHtml, /We'll write when VidaFrame is on the App Store/);
+assert.doesNotMatch(indexHtml, /Coming soon/);
+assert.doesNotMatch(indexHtml, /photo frame for iCloud Photos/);
+assert.doesNotMatch(indexHtml, /\bads\b/i);
+assert.doesNotMatch(indexHtml, /apps\.apple\.com/);
+const ogSource = readFileSync(new URL("../scripts/og.html", import.meta.url), "utf8");
+assert.match(ogSource, /Your albums, full screen/);
+assert.match(ogSource, /The house, one swipe away/);
+assert.match(ogSource, />Coming to the App Store</);
+assert.doesNotMatch(ogSource, /Coming soon/);
+assert.doesNotMatch(ogSource, /Your photos, full screen/);
 assert.match(privacySource, /href="\.\.\/privacy\/"/);
 assert.match(privacySource, /href="\.\.\/support\/"/);
 assert.match(supportSource, /href="\.\.\/privacy\/"/);

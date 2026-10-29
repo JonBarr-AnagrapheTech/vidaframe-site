@@ -401,6 +401,15 @@ input {
   color: var(--cream-soft);
 }
 
+.plus-note {
+  width: min(var(--shell), 100%);
+  max-width: 40rem;
+  margin-top: 1.25rem;
+  margin-inline: auto;
+  color: var(--cream-soft);
+  text-wrap: pretty;
+}
+
 .showcase {
   display: grid;
   grid-template-columns: 1fr;
