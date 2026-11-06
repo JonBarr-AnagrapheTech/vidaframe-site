@@ -78,7 +78,7 @@ assert.match(indexHtml, /property="og:title" content="VidaFrame — Your albums,
 assert.match(indexHtml, /name="twitter:title" content="VidaFrame — Your albums, full screen"/);
 assert.equal(
   indexHtml.match(
-    /Choose Favorites, your albums, or an iCloud Shared Album\. The house is one swipe away\. Coming to the App Store\./g,
+    /Choose Favorites, your albums, or an iCloud Shared Album\. The house is one swipe away\. Available on the App Store\./g,
   )?.length,
   3,
 );
@@ -86,7 +86,21 @@ assert.match(indexHtml, /property="og:image" content="https:\/\/anagraphetech\.c
 assert.match(indexHtml, /name="twitter:image" content="https:\/\/anagraphetech\.com\/og\.png"/);
 assert.match(indexHtml, /Your albums, full screen/);
 assert.match(indexHtml, /The house, one swipe away/);
-assert.match(indexHtml, /<p class="badge">Coming to the App Store<\/p>/);
+assert.match(
+  indexHtml,
+  /<a class="store-badge" href="https:\/\/apps\.apple\.com\/us\/app\/id6822881564">/,
+);
+assert.match(indexHtml, /src="\/badges\/download-on-the-app-store\.svg"/);
+assert.match(indexHtml, /alt="Download on the App Store"/);
+assert.equal(indexHtml.match(/apps\.apple\.com/g)?.length, 1);
+assert.doesNotMatch(indexHtml, /Coming to the App Store/);
+assert.doesNotMatch(indexHtml, /<p class="badge">/);
+const badgeSvg = readFileSync(
+  new URL("../public/badges/download-on-the-app-store.svg", import.meta.url),
+  "utf8",
+);
+assert.match(badgeSvg, /<title>Download_on_the_App_Store_Badge_US-UK_RGB_wht_092917<\/title>/);
+assert.doesNotMatch(badgeSvg, /<script/i);
 assert.match(indexHtml, /VidaFrame is free/);
 assert.match(indexHtml, /VidaFrame Plus is an optional upgrade at \$0\.49 a month/);
 assert.match(indexHtml, /removes the notice and adds weather/);
@@ -94,11 +108,11 @@ assert.match(indexHtml, /We'll write when VidaFrame is on the App Store/);
 assert.doesNotMatch(indexHtml, /Coming soon/);
 assert.doesNotMatch(indexHtml, /photo frame for iCloud Photos/);
 assert.doesNotMatch(indexHtml, /\bads\b/i);
-assert.doesNotMatch(indexHtml, /apps\.apple\.com/);
 const ogSource = readFileSync(new URL("../scripts/og.html", import.meta.url), "utf8");
 assert.match(ogSource, /Your albums, full screen/);
 assert.match(ogSource, /The house, one swipe away/);
-assert.match(ogSource, />Coming to the App Store</);
+assert.match(ogSource, />Available on the App Store</);
+assert.doesNotMatch(ogSource, /Coming to the App Store/);
 assert.doesNotMatch(ogSource, /Coming soon/);
 assert.doesNotMatch(ogSource, /Your photos, full screen/);
 assert.match(privacySource, /href="\.\.\/privacy\/"/);
