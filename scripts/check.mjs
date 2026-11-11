@@ -92,7 +92,13 @@ assert.match(
 );
 assert.match(indexHtml, /src="\/badges\/download-on-the-app-store\.svg"/);
 assert.match(indexHtml, /alt="Download on the App Store"/);
-assert.equal(indexHtml.match(/apps\.apple\.com/g)?.length, 1);
+assert.equal(indexHtml.match(/apps\.apple\.com/g)?.length, 2);
+assert.equal(
+  indexHtml.match(
+    /<a class="store-badge" href="https:\/\/apps\.apple\.com\/us\/app\/id6822881564">/g,
+  )?.length,
+  2,
+);
 assert.doesNotMatch(indexHtml, /Coming to the App Store/);
 assert.doesNotMatch(indexHtml, /<p class="badge">/);
 const badgeSvg = readFileSync(
@@ -104,7 +110,13 @@ assert.doesNotMatch(badgeSvg, /<script/i);
 assert.match(indexHtml, /VidaFrame is free/);
 assert.match(indexHtml, /VidaFrame Plus is an optional upgrade at \$0\.49 a month/);
 assert.match(indexHtml, /removes the notice and adds weather/);
-assert.match(indexHtml, /We'll write when VidaFrame is on the App Store/);
+assert.match(indexHtml, /id="signup-title">On the App Store</);
+assert.match(indexHtml, /VidaFrame is available now\. We'll email you about the app\./);
+assert.match(indexHtml, /<button type="submit">Get updates<\/button>/);
+assert.doesNotMatch(indexHtml, /We'll write when VidaFrame is on the App Store/);
+assert.doesNotMatch(indexHtml, /Be first to know/);
+assert.doesNotMatch(indexHtml, /when it's on the App Store/i);
+assert.doesNotMatch(indexHtml, /coming to the App Store/i);
 assert.doesNotMatch(indexHtml, /Coming soon/);
 assert.doesNotMatch(indexHtml, /photo frame for iCloud Photos/);
 assert.doesNotMatch(indexHtml, /\bads\b/i);
