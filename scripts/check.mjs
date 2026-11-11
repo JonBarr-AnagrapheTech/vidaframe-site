@@ -112,7 +112,8 @@ assert.match(indexHtml, /VidaFrame Plus is an optional upgrade at \$0\.49 a mont
 assert.match(indexHtml, /removes the notice and adds weather/);
 assert.match(indexHtml, /id="signup-title">On the App Store</);
 assert.match(indexHtml, /VidaFrame is available now\. We'll email you about the app\./);
-assert.match(indexHtml, /<button type="submit">Get updates<\/button>/);
+assert.equal(indexHtml.match(/<button type="submit">Get updates<\/button>/g)?.length, 2);
+assert.doesNotMatch(indexHtml, /Join the waitlist/);
 assert.doesNotMatch(indexHtml, /We'll write when VidaFrame is on the App Store/);
 assert.doesNotMatch(indexHtml, /Be first to know/);
 assert.doesNotMatch(indexHtml, /when it's on the App Store/i);
