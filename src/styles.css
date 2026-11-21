@@ -129,9 +129,31 @@ input {
 .site-header {
   position: relative;
   z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.35rem 1.25rem;
   width: min(var(--shell), 100%);
   margin-inline: auto;
   padding-top: 0.85rem;
+}
+
+.lang-switch {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.lang-switch a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.lang-switch a[aria-current="page"] {
+  color: var(--gold);
 }
 
 .company {
@@ -289,7 +311,8 @@ input {
   }
 
   .company a:hover,
-  .footer-nav a:hover {
+  .footer-nav a:hover,
+  .lang-switch a:hover {
     color: var(--gold);
   }
 
@@ -577,6 +600,15 @@ input {
   font-weight: 650;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+}
+
+.doc-page .doc-note {
+  margin-bottom: 1.35rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: rgba(232, 184, 109, 0.08);
+  padding: 0.85rem 1rem;
+  color: var(--cream);
 }
 
 .doc-page .lede {

@@ -1,8 +1,8 @@
 # Anagraphe Tech
 
-Coming-soon site for [VidaFrame](https://anagraphetech.com/), an iPad app from Anagraphe Tech LLC. The page is a static preview. It is not deployed, and this repo does not configure hosting or DNS.
+Coming-soon site for [VidaFrame](https://anagraphetech.com/), an iPhone and iPad app from Anagraphe Tech LLC. The page is a static preview. It is not deployed, and this repo does not configure hosting or DNS. Spanish pages live under `/es/`.
 
-VidaFrame turns an iPad into a full-screen photo frame for iCloud Photos. Favorites, albums, and iCloud Shared Albums play on the device. Swipe up from the frame for Apple Home. Photos stay on the iPad.
+VidaFrame is a full-screen photo frame for iCloud Photos on iPhone and iPad. On iPhone the frame stays portrait, and square photos count as portrait. Turn on Include landscape photos in Settings, under Frame, to show wider photos with a blurred fill. That switch stays off on iPhone until you do. Favorites, albums, and iCloud Shared Albums play on the device. Swipe up from the frame for Apple Home. Photos stay on the iPhone or iPad.
 
 ## Run locally
 

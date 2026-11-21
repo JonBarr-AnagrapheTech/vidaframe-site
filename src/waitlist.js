@@ -1,7 +1,7 @@
 import { isValidEmail } from "./email.js";
 import { interpretSubscribeResponse } from "./subscribe.js";
 
-const COPY = {
+const COPY_EN = {
   empty: "Enter your email address.",
   invalid: "Enter a valid email address.",
   success: "You're on the list. Check your inbox to confirm.",
@@ -10,7 +10,25 @@ const COPY = {
   follow: "Continuing to confirm your email…",
   pending: "Joining…",
   misconfigured: "The waitlist is not configured yet.",
+  joined: "Joined",
 };
+
+const COPY_ES = {
+  empty: "Escribe tu correo electrónico.",
+  invalid: "Escribe un correo electrónico válido.",
+  success: "Ya estás en la lista. Revisa tu bandeja para confirmar.",
+  error: "No pudimos agregar ese correo. Inténtalo de nuevo.",
+  offline: "No pudimos conectar con la lista. Revisa tu conexión e inténtalo de nuevo.",
+  follow: "Seguimos para confirmar tu correo…",
+  pending: "Uniéndote…",
+  misconfigured: "La lista de espera todavía no está configurada.",
+  joined: "En la lista",
+};
+
+function copyFor(form) {
+  const lang = form.ownerDocument.documentElement.lang;
+  return lang === "es" ? COPY_ES : COPY_EN;
+}
 
 function statusEl(form) {
   return form.querySelector(".waitlist-status");
@@ -57,7 +75,7 @@ function setPending(form) {
   const button = submitButton(form);
   if (!button.dataset.label) button.dataset.label = button.textContent;
   button.disabled = true;
-  button.textContent = COPY.pending;
+  button.textContent = copyFor(form).pending;
 }
 
 function showError(form, message) {
@@ -69,14 +87,15 @@ function showError(form, message) {
 }
 
 function showSuccess(form) {
+  const copy = copyFor(form);
   form.removeAttribute("aria-busy");
-  setStatus(form, COPY.success, "success");
+  setStatus(form, copy.success, "success");
   const input = emailInput(form);
   input.setAttribute("aria-invalid", "false");
   input.readOnly = true;
   const button = submitButton(form);
   button.disabled = true;
-  button.textContent = "Joined";
+  button.textContent = copy.joined;
 }
 
 function configured(form) {
@@ -111,17 +130,18 @@ export function bindWaitlist(root = document) {
 
       const email = input.value.trim();
       input.value = email;
+      const copy = copyFor(form);
 
       if (!email) {
-        showError(form, COPY.empty);
+        showError(form, copy.empty);
         return;
       }
       if (!isValidEmail(email)) {
-        showError(form, COPY.invalid);
+        showError(form, copy.invalid);
         return;
       }
       if (!configured(form)) {
-        showError(form, COPY.misconfigured);
+        showError(form, copy.misconfigured);
         return;
       }
 
@@ -135,14 +155,14 @@ export function bindWaitlist(root = document) {
           return;
         }
         if (result.outcome === "follow") {
-          setStatus(form, COPY.follow, "pending");
+          setStatus(form, copy.follow, "pending");
           window.setTimeout(() => restoreButton(form), 4000);
           form.submit();
           return;
         }
-        showError(form, result.message || COPY.error);
+        showError(form, result.message || copy.error);
       } catch {
-        showError(form, COPY.offline);
+        showError(form, copy.offline);
       } finally {
         inFlight = false;
       }
