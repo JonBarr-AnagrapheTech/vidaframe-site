@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  pull_request:
   workflow_dispatch:
 
 # pages: write deploys the site; id-token: write verifies the deployment.
@@ -41,7 +42,9 @@ jobs:
         with:
           path: dist
 
+  # Pull requests only build. Deploy stays on main and manual runs.
   deploy:
+    if: github.event_name != 'pull_request'
     needs: build
     runs-on: ubuntu-latest
     environment:

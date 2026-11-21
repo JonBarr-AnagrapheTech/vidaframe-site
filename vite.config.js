@@ -22,11 +22,14 @@ export default defineConfig({
   plugins: [buttondownConfig()],
   build: {
     rollupOptions: {
-      // Directory indexes, so GitHub Pages serves /privacy and /support.
+      // Directory indexes, so GitHub Pages serves /privacy, /support, and /es/.
       input: {
         main: resolve(root, "index.html"),
         privacy: resolve(root, "privacy/index.html"),
         support: resolve(root, "support/index.html"),
+        es: resolve(root, "es/index.html"),
+        esPrivacy: resolve(root, "es/privacy/index.html"),
+        esSupport: resolve(root, "es/support/index.html"),
       },
     },
   },
